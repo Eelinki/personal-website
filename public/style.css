@@ -1,0 +1,34 @@
+html {
+  height: 100%
+}
+
+body {
+  background-color: #ffffff;
+  background-image: url(./logo.svg);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position-x: -5%;
+}
+
+.ArticleCard {
+  width: var(--width-card-medium);
+  background: var(--color-bg);
+}
+
+img.ArticleCardHeader {
+  max-height: 10em;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+img.ArticleHeader {
+  max-height: 20em;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.ArticleContent {
+  width: 100%;
+}
