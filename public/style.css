@@ -1,34 +1,223 @@
-html {
-  height: 100%
+@import '~sanitize.css';
+@import '~sanitize.css/forms.css';
+@import '~sanitize.css/typography.css';
+
+:root {
+    --color-bg: #fff;
+    --color-text: #000;
+    --color-text-light: #555;
+    --border-radius: 5px;
+    --font-family-title: 'Montserrat', sans-serif;
+    --font-family: 'Open Sans', sans-serif;
+
+    /* Containers */
+    --width-container-large: 1600px;
+    --width-card-small: 400px;
+    --width-card-medium: 600px;
+
+    /* Navigation */
+    --color-nav-bg: #263371;
+    --color-nav-text: #000;
+}
+
+@media (min-width: 901px) {
+    body {
+        background: url("/background.svg") right top no-repeat;
+    }
+
+    main {
+        flex-direction: row;
+        padding: 0 5em;
+    }
+
+    .landing {
+        font-size: 1.5em;
+        margin: 5em 0;
+    }
+
+    nav ul {
+        flex-direction: row;
+        gap: 25px;
+    }
+}
+
+@media (max-width: 900px) {
+    body {
+        background: url("/background.svg") right top no-repeat;
+        background-position-x: 20%;
+    }
+
+    .landing {
+        font-size: 1.2em;
+        width: 100%;
+        margin-right: auto;
+        padding: 25px;
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+}
+
+html, body {
+    min-height: 100%;
 }
 
 body {
-  background-color: #ffffff;
-  background-image: url(./logo.svg);
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position-x: -5%;
+    font-family: var(--font-family);
+    color: var(--color-text);
 }
 
-.ArticleCard {
-  width: var(--width-card-medium);
-  background: var(--color-bg);
+main {
+    display: flex;
+    flex-direction: column;
+    max-width: var(--width-container-large);
+    margin: 0 auto;
 }
 
-img.ArticleCardHeader {
-  max-height: 10em;
-  width: 100%;
-  object-fit: cover;
-  border-radius: var(--border-radius);
+.container-large {
+    max-width: var(--width-container-large);
+    margin: 0 auto;
 }
 
-img.ArticleHeader {
-  max-height: 20em;
-  width: 100%;
-  object-fit: cover;
-  border-radius: var(--border-radius);
+nav {
+    padding: 25px;
 }
 
-.ArticleContent {
-  width: 100%;
+nav ul {
+    display: flex;
+    margin: 0;
+}
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+nav a.logo {
+    font-size: 1.4em;
+}
+
+h1, h2 {
+    font-family: var(--font-family-title);
+    font-weight: 500;
+}
+
+.landing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-text);
+    text-shadow: var(--color-bg) 0 0 50px;
+}
+
+.landing h2:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.landing h2:not(:first-child) {
+    margin-top: 0;
+}
+
+.landing h1 {
+    opacity: 0;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: fadeInLeft;
+}
+
+.landing > .content {
+    opacity: 0;
+    animation-delay: 0.5s;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: fadeInUp;
+}
+
+header {
+    text-align: center;
+    padding: 5em 0;
+    margin: 25px 25px 2em;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--border-radius);
+}
+
+.articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--width-card-medium), 100%), 1fr));
+    grid-gap: 25px;
+    margin: 25px;
+}
+
+.article-card {
+    place-self: center;
+    width: 100%;
+}
+
+.article-card figure {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+img.article-card-header {
+    max-height: 15em;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    transition: all 1s ease;
+}
+
+.article-card:hover > figure img.article-card-header {
+    transform: scale(1.1);
+}
+
+img.article-header {
+    max-height: 20em;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+article {
+    padding: 0 25px 25px;
+}
+
+header.article {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 25px;
+}
+
+.author-card p {
+    margin: 0;
+}
+
+.author-card p.date {
+    color: var(--color-text-light);
+    font-size: 0.9em;
+}
+
+@keyframes fadeInLeft {
+    from {
+        transform: translate3d(-40px, 0, 0)
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0, 40px, 0)
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1
+    }
 }

@@ -4,7 +4,6 @@ const Layout = ({ children }) => {
   return (
     <main>
       <nav>
-        <Link href="/">Eeli Hakkarainen</Link>
         <ul>
           <li><Link href="/">Home</Link></li>
           <li><Link href="/articles">Blog</Link></li>

@@ -1,23 +1,23 @@
+import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import articleService from '../../lib/articleService'
 import getStrapiMedia from '../../lib/media'
-import articleContent from '../../lib/articleContent'
 import AuthorCard from '../../components/AuthorCard'
-import Date from '../../components/Date'
 import Seo from '../../components/Seo'
 
 const Article = ({ article }) => {
   return (
     <Layout>
       <Seo title={article.Title} />
-      <header>
-        <img src={getStrapiMedia(article.HeaderImage.formats.large)} alt={article.Title} className="ArticleHeader" />
+      <header className="article">
+        <img src={getStrapiMedia(article.HeaderImage.formats.large)} alt={article.Title} className="article-header" />
         <h1>{article.Title}</h1>
-        <p><Date dateString={article.published_at} /></p>
       </header>
       <article>
         <AuthorCard article={article} />
-        <div className="ArticleContent" dangerouslySetInnerHTML={{ __html: article.contentHtml }} />
+        <div className="content">
+          <ReactMarkdown>{ article.Content }</ReactMarkdown>
+        </div>
       </article>
     </Layout>
   )
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const articles = await articleService.fetchBySlug(params.slug)
 
-  const article = await articleContent(articles[0])
+  const article = articles[0]
 
   return {
     props: { article },

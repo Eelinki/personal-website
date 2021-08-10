@@ -1,7 +1,10 @@
+import Date from './Date'
+
 const AuthorCard = ({ article }) => {
   return (
-    <aside className="AuthorCard">
-      <p>{article.author.Name}</p>
+    <aside className="author-card">
+      <p className="author">{article.author.Name}</p>
+      <p className="date"><Date dateString={article.published_at} /></p>
     </aside>
   )
 }

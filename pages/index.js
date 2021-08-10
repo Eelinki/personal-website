@@ -1,15 +1,18 @@
+import ReactMarkdown from 'react-markdown'
 import Layout from '../components/Layout'
 import homeService from '../lib/homeService'
-import mdParser from '../lib/mdParser'
 import Seo from '../components/Seo'
 
 const Home = ({ homepage }) => {
   return (
     <Layout>
       <Seo />
-      <header>
-        <div className="ArticleContent" dangerouslySetInnerHTML={{ __html: homepage.contentHtml }} />
-      </header>
+      <div className="landing">
+        <h1>{homepage.Title}</h1>
+        <div className="content">
+          <ReactMarkdown>{ homepage.Content }</ReactMarkdown>
+        </div>
+      </div>
     </Layout>
   )
 }
@@ -17,10 +20,8 @@ const Home = ({ homepage }) => {
 export async function getStaticProps() {
   const homepage = await homeService.fetch()
 
-  const contentHtml = await mdParser.parse(homepage.Content)
-
   return {
-    props: { homepage: { ...homepage, contentHtml } },
+    props: { homepage },
     revalidate: 1,
   }
 }

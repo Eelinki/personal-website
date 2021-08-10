@@ -4,8 +4,6 @@ import articleService from '../lib/articleService'
 import Seo from '../components/Seo'
 
 const Articles = ({ articles }) => {
-  const anyArticles = articles.length > 0
-
   return (
     <Layout>
       <Seo title="Blog" />
@@ -13,8 +11,8 @@ const Articles = ({ articles }) => {
         <h1>Blog</h1>
         <p><b>Read my articles</b></p>
       </header>
-      <section>
-        { anyArticles
+      <section className="articles">
+        { articles.length > 0
           ? (
             articles.map((article) => <ArticleCard key={article.Title} article={article} />)
           )
