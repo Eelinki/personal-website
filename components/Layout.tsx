@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import React from 'react'
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main>
       <nav>
@@ -11,7 +12,7 @@ const Layout = ({ children }) => {
           <li><a href="https://www.linkedin.com/in/eeli-hakkarainen/" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a></li>
         </ul>
       </nav>
-      {children}
+      { children }
     </main>
   )
 }

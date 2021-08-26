@@ -1,14 +1,12 @@
 import axios from 'axios'
 import getStrapiURL from './api'
 
-const fetchAll = () => {
+export const fetchAll = () => {
   const request = axios.get(getStrapiURL('/articles'))
   return request.then((response) => response.data)
 }
 
-const fetchBySlug = (slug) => {
-  const request = axios.get(getStrapiURL(`/articles?Slug=${slug}`))
+export const fetchBySlug = (slug: string) => {
+  const request = axios.get(getStrapiURL(`/articles?slug=${slug}`))
   return request.then((response) => response.data)
 }
-
-export default { fetchAll, fetchBySlug }

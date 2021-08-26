@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-const Seo = ({ title }) => {
+const Seo = ({ title }: { title?: string }) => {
   return (
     <Head>
       { title

@@ -1,9 +1,11 @@
+import { GetStaticProps } from 'next'
 import Layout from '../components/Layout'
 import ArticleCard from '../components/ArticleCard'
-import articleService from '../lib/articleService'
+import { fetchAll } from '../lib/articleService'
 import Seo from '../components/Seo'
+import {Article} from '../contract/Article'
 
-const Articles = ({ articles }) => {
+const Articles = ({ articles }: { articles: Article[] }) => {
   return (
     <Layout>
       <Seo title="Blog" />
@@ -14,7 +16,7 @@ const Articles = ({ articles }) => {
       <section className="articles">
         { articles.length > 0
           ? (
-            articles.map((article) => <ArticleCard key={article.Title} article={article} />)
+            articles.map((article) => <ArticleCard key={article.title} article={article} />)
           )
           : <p>No articles yet!</p>
         }
@@ -23,11 +25,11 @@ const Articles = ({ articles }) => {
   )
 }
 
-export async function getStaticProps() {
-  const articles = await articleService.fetchAll()
+export const getStaticProps: GetStaticProps = async () => {
+  const articles = await fetchAll()
 
-  const sortedArticles = articles.sort((a, b) => (
-    new Date(b.published_at) - new Date(a.published_at)
+  const sortedArticles = articles.sort((a: Article, b: Article) => (
+    (+new Date(b.published_at)) - (+new Date(a.published_at))
   ))
 
   return {

@@ -4,9 +4,11 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  parser: '@typescript-eslint/parser',
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
+    'next',
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -15,10 +17,12 @@ module.exports = {
     ecmaVersion: 12,
   },
   plugins: [
-    'react',
+    '@typescript-eslint',
   ],
   rules: {
-    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     semi: [
       'error',
       'never',
@@ -28,19 +32,7 @@ module.exports = {
       'error',
       'single',
     ],
-    'react/jsx-filename-extension': [
-      1, {
-        extensions: [
-          '.js',
-          '.jsx',
-        ],
-      },
-    ],
     'arrow-body-style': 0,
-    'react/prop-types': 0,
-    'react/jsx-one-expression-per-line': 0,
-    'react/jsx-curly-newline': 0,
-    'react/jsx-props-no-spreading': 0,
     'object-curly-newline': 0,
   },
 }
