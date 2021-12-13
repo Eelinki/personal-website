@@ -1,8 +1,9 @@
 import ReactMarkdown from 'react-markdown'
 import Layout from '../components/Layout'
-import homeService from '../lib/homeService'
+import { fetchApi } from '../lib/api'
 import Seo from '../components/Seo'
-import {Homepage} from '../contract/Homepage'
+import { Homepage } from '../contract/Homepage'
+import { GetStaticProps } from 'next'
 
 const Home = ({ homepage }: { homepage: Homepage }) => {
   return (
@@ -18,8 +19,8 @@ const Home = ({ homepage }: { homepage: Homepage }) => {
   )
 }
 
-export async function getStaticProps() {
-  const homepage = await homeService.fetch()
+export const getStaticProps: GetStaticProps = async () => {
+  const homepage = await fetchApi('/homepage')
 
   return {
     props: { homepage },

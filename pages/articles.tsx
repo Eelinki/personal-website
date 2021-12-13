@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import Layout from '../components/Layout'
 import ArticleCard from '../components/ArticleCard'
-import { fetchAll } from '../lib/articleService'
+import { fetchApi } from '../lib/api'
 import Seo from '../components/Seo'
 import {Article} from '../contract/Article'
 
@@ -26,7 +26,7 @@ const Articles = ({ articles }: { articles: Article[] }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const articles = await fetchAll()
+  const articles = await fetchApi('/articles')
 
   const sortedArticles = articles.sort((a: Article, b: Article) => (
     (+new Date(b.published_at)) - (+new Date(a.published_at))

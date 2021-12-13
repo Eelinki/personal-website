@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
-import { fetchAll, fetchBySlug } from '../../lib/articleService'
+import { fetchApi } from '../../lib/api'
 import getStrapiMedia from '../../lib/media'
 import AuthorCard from '../../components/AuthorCard'
 import Seo from '../../components/Seo'
@@ -29,7 +29,7 @@ const Article = ({ article }: {article: ArticleInterface}) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await fetchAll()
+  const articles = await fetchApi('/articles')
 
   return {
     paths: articles.map((article: ArticleInterface) => ({
@@ -47,7 +47,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params as Params
-  const articles = await fetchBySlug(params.slug)
+  const articles = await fetchApi(`/articles?slug=${params.slug}`)
 
   const article = articles[0]
 
