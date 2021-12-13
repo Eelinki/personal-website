@@ -7,6 +7,6 @@ export interface Article {
     content: string
     slug: string
     description?: string
-    published_at: Date,
+    publishedAt: Date,
     author: Author
 }

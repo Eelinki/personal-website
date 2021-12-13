@@ -20,7 +20,7 @@ const Home = ({ homepage }: { homepage: Homepage }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const homepage = await fetchApi('/homepage')
+  const homepage = await fetchApi('/api/home')
 
   return {
     props: { homepage },

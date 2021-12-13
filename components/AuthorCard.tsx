@@ -5,7 +5,7 @@ const AuthorCard = ({ article }: { article: Article }) => {
   return (
     <aside className="author-card">
       <p className="author">{article.author.name}</p>
-      <p className="date"><Date dateString={article.published_at.toString()} /></p>
+      <p className="date"><Date dateString={article.publishedAt.toString()} /></p>
     </aside>
   )
 }

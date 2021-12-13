@@ -26,10 +26,10 @@ const Articles = ({ articles }: { articles: Article[] }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const articles = await fetchApi('/articles')
+  const articles = await fetchApi('/api/articles?populate=headerImage,author')
 
   const sortedArticles = articles.sort((a: Article, b: Article) => (
-    (+new Date(b.published_at)) - (+new Date(a.published_at))
+    (+new Date(b.publishedAt)) - (+new Date(a.publishedAt))
   ))
 
   return {

@@ -29,7 +29,7 @@ const Article = ({ article }: {article: ArticleInterface}) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await fetchApi('/articles')
+  const articles = await fetchApi('/api/articles?populate=headerImage,author')
 
   return {
     paths: articles.map((article: ArticleInterface) => ({
@@ -47,12 +47,10 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params as Params
-  const articles = await fetchApi(`/articles?slug=${params.slug}`)
-
-  const article = articles[0]
+  const articles = await fetchApi(`/api/articles?slug=${params.slug}&populate=headerImage,author`)
 
   return {
-    props: { article },
+    props: { article: articles[0] },
     revalidate: 1,
   }
 }
